@@ -12,7 +12,7 @@ class Algorithms {
 		}
 
 		System.out.println(str);
-		System.out.println(present(sorted, 17));
+		System.out.println(present(sorted, 11));
 
 	}
 
@@ -47,39 +47,27 @@ class Algorithms {
 		}
 
 		public static boolean present(int[] a, int b) {
-			boolean present = false;
-			int temp = 0;
-			// System.out.println(a.length);
-			if (a.length % 2 == 0) {
-				// System.out.println("If is running");
-				for (int j = 0; j < a.length; j += 2) {
-					// System.out.println(a[j]);
-					if (a[j] <= b) {
-						if (a[j] == b) {
-							return present = true;
-						} else if (a[j-1] == b){
-							return present = true;
-						}
-					// temp = j;
-					// break;
+			int[] newA = a;
+			int mid = newA.length/2;
+			int upper = 0;
+			int lower = newA.length/2;
+
+			for (int j = 0; j < newA.length; j ++) {
+				if (b > newA[lower]) {
+					System.out.println("Higher");
+					upper = newA.length/2 + 1;
+					lower = mid;
+				} else if (b < newA[lower]) {
+					System.out.println("Lower");
+					upper = mid;
+					lower = newA.length/2 - 1;
+				} else if (newA[j] == b) {
+					return true;
+				} else {
+					return false;
 				}
 			}
-			System.out.println(temp);
-				// for (int k = temp + 1; k < a.length; k -= 1) {
-				// 	// System.out.println("Spot:" + a[k]);
-				// 	// System.out.println(b);
-				// 	if (a[k] == b) {
-				// 		 return present  = true;
-				// 	}
-			// }
-		} else {
-			for (int j = 0; j < a.length; j ++) {
-				if (a[j] == b) {
-					return present = true;
-				}
-			}
-		}
-			return present;
+			return false;
 		}
 	}
 
